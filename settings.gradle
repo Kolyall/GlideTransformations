@@ -1,0 +1,3 @@
+include ':glide-transformations'
+include ':app'
+rootProject.name = "GlideTransformations"
