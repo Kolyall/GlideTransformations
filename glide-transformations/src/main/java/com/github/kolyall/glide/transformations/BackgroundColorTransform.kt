@@ -19,9 +19,6 @@ constructor(
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         canvas.drawColor(fillColor)
         canvas.drawBitmap(source, 0f, 0f, paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

@@ -15,9 +15,6 @@ class ColorFilterTransform(private val multiply: Int, private val add: Int) : Ba
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.colorFilter = LightingColorFilter(multiply, add)
         canvas.drawBitmap(source, 0f, 0f, paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

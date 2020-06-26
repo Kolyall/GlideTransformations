@@ -28,9 +28,6 @@ class RoundedTransformation : BaseBitmapTransformation() {
         if (out != scaled) {
             scaled.recycle()
         }
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

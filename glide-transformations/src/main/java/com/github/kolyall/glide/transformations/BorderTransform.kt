@@ -27,9 +27,6 @@ class BorderTransform constructor(
         val canvas = Canvas(out)
         canvas.drawColor(borderColor)
         canvas.drawBitmap(source, borderSize.toFloat(), borderSize.toFloat(), null)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

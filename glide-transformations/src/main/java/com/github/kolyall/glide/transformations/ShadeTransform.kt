@@ -53,9 +53,6 @@ class ShadeTransform : BaseBitmapTransformation {
         // Paint the shade
         canvas.drawPaint(paint)
         // Recycle and return
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

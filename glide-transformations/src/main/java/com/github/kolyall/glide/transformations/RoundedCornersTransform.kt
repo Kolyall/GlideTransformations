@@ -32,9 +32,6 @@ class RoundedCornersTransform(private val targetRadius: Int) : BaseBitmapTransfo
         // draw source
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(source, rect, rect, paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

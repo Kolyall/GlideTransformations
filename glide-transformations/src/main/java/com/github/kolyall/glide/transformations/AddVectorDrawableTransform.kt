@@ -28,9 +28,6 @@ class AddVectorDrawableTransform constructor(
         //        mDrawable.setColorFilter( mTintColor, PorterDuff.Mode.MULTIPLY);
         drawable.setBounds(width / 4, height / 4, 3 * width / 4, 3 * height / 4)
         drawable.draw(canvas)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

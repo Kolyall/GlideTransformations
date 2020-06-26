@@ -32,9 +32,6 @@ class CircleTransformation : BaseBitmapTransformation() {
         if (out != squaredBitmap) {
             squaredBitmap.recycle()
         }
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

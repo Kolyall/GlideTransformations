@@ -30,9 +30,6 @@ class GradientTransformation constructor(
         paint.isFilterBitmap = true
         paint.shader = grad
         canvas.drawPaint(paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

@@ -22,9 +22,6 @@ class InnerResizeTransform(private val scale: Float) : BaseBitmapTransformation(
         val dx = (width - scaled.width) / 2
         val dy = (height - scaled.height) / 2
         canvas.drawBitmap(scaled, dx.toFloat(), dy.toFloat(), paint)
-        if (out != source) {
-            source.recycle()
-        }
         if (out != scaled) {
             scaled.recycle()
         }

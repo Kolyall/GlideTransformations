@@ -13,6 +13,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 import com.github.kolyall.glide.transformations.base.BaseBitmapTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
@@ -88,17 +89,18 @@ public class NewGradientTransformation extends BaseBitmapTransformation {
         mPositions = positions;
     }
 
+    @NotNull
     @Override
-    public Bitmap transform(Bitmap source) {
-        Bitmap bm = mutable(source);
-        if (bm == null) {
+    public Bitmap transform(@NotNull Bitmap source) {
+        Bitmap out = mutable(source);
+        if (out == null) {
             Log.e(TAG, "bitmap could not be copied, returning untransformed");
             return source;
         }
-        Canvas canvas = new Canvas(bm);
+        Canvas canvas = new Canvas(out);
         Paint paint = new Paint();
-        int width = bm.getWidth();
-        int height = bm.getHeight();
+        int width = out.getWidth();
+        int height = out.getHeight();
         float x0 = 0.0f, y0 = 0.0f, x1 = 0.0f, y1 = 0.0f;
         switch (mOrient) {
             case BOTTOM_TOP:
@@ -132,7 +134,7 @@ public class NewGradientTransformation extends BaseBitmapTransformation {
         }
         paint.setShader(new LinearGradient(x0, y0, x1, y1, mColors, mPositions, CLAMP));
         canvas.drawRect(0.0f, 0.0f, width, height, paint);
-        return bm;
+        return out;
     }
 
     /**

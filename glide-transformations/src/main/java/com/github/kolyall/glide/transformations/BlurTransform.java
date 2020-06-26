@@ -7,6 +7,7 @@ import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
 import com.github.kolyall.glide.transformations.base.BaseBitmapTransformation;
+import org.jetbrains.annotations.NotNull;
 
 
 public class BlurTransform extends BaseBitmapTransformation {
@@ -21,9 +22,10 @@ public class BlurTransform extends BaseBitmapTransformation {
         mInSampleSize = inSampleSize;
     }
 
+    @NotNull
     @Override
-    public Bitmap transform(Bitmap bitmap) {
-        return blurBitmap(mRenderScript, bitmap, BLUR_RADIUS, mInSampleSize);
+    public Bitmap transform(@NotNull Bitmap source) {
+        return blurBitmap(mRenderScript, source, BLUR_RADIUS, mInSampleSize);
     }
 
     /**
@@ -32,22 +34,22 @@ public class BlurTransform extends BaseBitmapTransformation {
      *
      * @param sizeReductionFactor Factor to reduce the image by before blurring.
      */
-    public static Bitmap blurBitmap(RenderScript renderscript, Bitmap bitmap, float radius, int sizeReductionFactor) {
+    public static Bitmap blurBitmap(RenderScript renderscript, Bitmap source, float radius, int sizeReductionFactor) {
         sizeReductionFactor = Integer.highestOneBit(sizeReductionFactor);
 
         if (sizeReductionFactor == 1) {
-            return blurBitmap(renderscript, bitmap, radius);
+            return blurBitmap(renderscript, source, radius);
         }
 
-        int originalWidth = bitmap.getWidth();
-        int originalHeight = bitmap.getHeight();
+        int originalWidth = source.getWidth();
+        int originalHeight = source.getHeight();
         int scaledWidth = originalWidth / sizeReductionFactor;
         int scaledHeight = originalHeight / sizeReductionFactor;
 
         //Let's create an empty bitmap with the same size of the bitmap we want to blur
         Bitmap outBitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, false);
-        bitmap.recycle();
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(source, scaledWidth, scaledHeight, false);
+        source.recycle();
 
         // Create an Intrinsic Blur Script using Renderscript
         ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(renderscript, Element.U8_4(renderscript));
@@ -70,10 +72,10 @@ public class BlurTransform extends BaseBitmapTransformation {
 
         // Recycle the scaled bitmap
         scaledBitmap.recycle();
-        Bitmap resultBitmap = Bitmap.createScaledBitmap(outBitmap, originalWidth, originalHeight, false);
+        Bitmap out = Bitmap.createScaledBitmap(outBitmap, originalWidth, originalHeight, false);
         outBitmap.recycle();
 
-        return resultBitmap;
+        return out;
     }
 
     /**

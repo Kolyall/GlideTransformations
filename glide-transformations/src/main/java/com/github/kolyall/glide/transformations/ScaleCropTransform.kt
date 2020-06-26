@@ -24,9 +24,6 @@ class ScaleCropTransform(private val targetWidth: Int, private val targetHeight:
         val scaledWidth = (width * targetScale).toInt()
         val scaledHeight = (height * targetScale).toInt()
         val out = Bitmap.createScaledBitmap(source, scaledWidth, scaledHeight, true)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

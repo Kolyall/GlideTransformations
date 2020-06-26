@@ -32,9 +32,6 @@ class ResizeTransform : BaseBitmapTransformation{
         val out = Bitmap.createBitmap(
             source, 0, 0, width, height, matrix, false
         )
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

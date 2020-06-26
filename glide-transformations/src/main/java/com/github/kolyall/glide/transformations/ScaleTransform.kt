@@ -21,9 +21,6 @@ constructor(
         xform.postScale(scale, scale, halfWidth, halfHeight)
         canvas.matrix = xform
         canvas.drawBitmap(source, null, Rect(0, 0, width, height), null)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

@@ -45,9 +45,6 @@ class GlowTransform constructor(
         canvas.drawBitmap(alpha, halfMargin.toFloat(), halfMargin.toFloat(), paint)
         // original icon
         canvas.drawBitmap(source, halfMargin.toFloat(), halfMargin.toFloat(), null)
-        if (out != source) {
-            source.recycle()
-        }
         if (out != alpha) {
             alpha.recycle()
         }

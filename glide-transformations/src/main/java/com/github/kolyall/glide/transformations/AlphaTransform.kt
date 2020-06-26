@@ -18,9 +18,6 @@ class AlphaTransform constructor(
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.alpha = (alpha * 255).toInt()
         canvas.drawBitmap(source, 0f, 0f, paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 

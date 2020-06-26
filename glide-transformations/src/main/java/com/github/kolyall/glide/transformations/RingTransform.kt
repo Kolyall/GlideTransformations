@@ -35,9 +35,6 @@ class RingTransform constructor(
         paint.strokeWidth = strokeWidth
         paint.style = Paint.Style.STROKE
         canvas.drawCircle(halfWidth, halfHeight, halfWidth, paint)
-        if (out != source) {
-            source.recycle()
-        }
         return out
     }
 
