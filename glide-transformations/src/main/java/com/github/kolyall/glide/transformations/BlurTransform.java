@@ -49,7 +49,6 @@ public class BlurTransform extends BaseBitmapTransformation {
         //Let's create an empty bitmap with the same size of the bitmap we want to blur
         Bitmap outBitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(source, scaledWidth, scaledHeight, false);
-        source.recycle();
 
         // Create an Intrinsic Blur Script using Renderscript
         ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(renderscript, Element.U8_4(renderscript));

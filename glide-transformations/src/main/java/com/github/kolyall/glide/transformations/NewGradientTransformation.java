@@ -150,9 +150,6 @@ public class NewGradientTransformation extends BaseBitmapTransformation {
         }
         Bitmap.Config config = source.getConfig();
         Bitmap bm = source.copy(config != null ? config : ARGB_8888, true);
-        if (bm != null) {
-            source.recycle();
-        }
         return bm;
     }
 
